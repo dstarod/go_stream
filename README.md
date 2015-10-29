@@ -1,6 +1,6 @@
 # go_stream
 
-Golang int slices actions, inspired Java8 stream
+Golang slices actions, inspired Java8 stream
 
 You can create types IntArray or FloatArray and call methods:
 
