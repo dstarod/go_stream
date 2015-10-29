@@ -2,7 +2,7 @@
 
 Golang int slices actions, inspired Java8 stream
 
-You can create type IntArray and call methods:
+You can create types IntArray or FloatArray and call methods:
 
 - Append(int): add element
 - Extend([]int): add all elements
@@ -30,8 +30,10 @@ For example:
     )
     
     func main()  {
-        ia := go_stream.IntArray{[]int{4, 2, 4, 3}}
     
+        // IntArray example
+        
+        ia := go_stream.IntArray{[]int{4, 2, 4, 3}}
         fmt.Println(ia) // []int{4, 2, 1, 3}
     
         ia.Distinct()
@@ -49,4 +51,19 @@ For example:
     
         ia.SortDistinct()
         fmt.Println(ia) // []int{12, 180}
+        
+        // FloatArray - it's the same
+        
+        fa := go_stream.FloatArray{[]float64{3.6, 1.4, 7.5}}
+        fmt.Println(fa) // []float64{3.6, 1.4, 7.5}
+    
+        fa.Append(4.5).Extend([]float64{7.56, 93.234}).Map(func(f float64) float64 { return f*2 }).SortDistinct()
+        fmt.Println(fa) // []float64{2.8, 7.2, 9, 15, 15.12, 186.468}
+    
+        fa.Filter(func(x float64) bool { return x > 3  })
+        fmt.Println(fa) // []float64{7.2, 9, 15, 15.12, 186.468}
+    
+        p := fa.Max()
+        fmt.Printf("%T, %v\n", p, p) // float64, 15
     }
+
